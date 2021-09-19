@@ -14,5 +14,7 @@ void CommHelper::sl_init_socket(QString ip_adress)
 
 void CommHelper::read_value_from_socket()
 {
+    QByteArray ba_data = s_socket->readAll();
+    sig_transmit_socket_data(ba_data);
 
 }

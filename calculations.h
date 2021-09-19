@@ -14,7 +14,6 @@ private slots:
     void sl_calculate_trim(double draft_aft, double draft_fwd);
     void sl_calculate_volume(double trim, double measure, int type);
 
-
 signals:
 
 };
