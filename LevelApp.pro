@@ -16,7 +16,8 @@ SOURCES += \
     dbhelper.cpp \
     main.cpp \
     maincoremodule.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    unit.cpp
 
 HEADERS += \
     ballastsmallunit.h \
@@ -25,7 +26,8 @@ HEADERS += \
     commhelper.h \
     dbhelper.h \
     maincoremodule.h \
-    mainwindow.h
+    mainwindow.h \
+    unit.h
 
 FORMS += \
     ballastsmallunit.ui \
