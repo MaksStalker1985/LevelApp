@@ -8,7 +8,7 @@
 
 
 #include <QObject>
-
+#include "unit.h"
 
 
 
@@ -21,7 +21,14 @@ public:
 signals:
 
 private:
+    QString STR_CONFIG_FILENAME;
+    int I_UNITS_QUANTITY = 0;
+
     void set_configuration(QString data);
+    void read_config_file();
+    void write_config(QString data);
+    void init_units();
+    Unit *p_unit;
 
 };
 
