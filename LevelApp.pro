@@ -14,6 +14,7 @@ SOURCES += \
     calculations.cpp \
     commhelper.cpp \
     dbhelper.cpp \
+    fuelsmallunit.cpp \
     main.cpp \
     maincoremodule.cpp \
     mainwindow.cpp \
@@ -25,6 +26,7 @@ HEADERS += \
     calculations.h \
     commhelper.h \
     dbhelper.h \
+    fuelsmallunit.h \
     maincoremodule.h \
     mainwindow.h \
     unit.h
@@ -32,6 +34,7 @@ HEADERS += \
 FORMS += \
     ballastsmallunit.ui \
     ballastwidget.ui \
+    fuelsmallunit.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -5,6 +5,25 @@ Unit::Unit(QObject *parent) : QObject(parent)
 
 }
 
+void Unit::getValues(double value, double trim, int type)
+{
+    D_UNIT_PARAMS[3] = value;
+    D_UNIT_PARAMS[2] = calculate_data(trim,D_UNIT_PARAMS[3],type);
+
+}
+
+void Unit::initUnit(QString data)
+{
+    QStringList *ptr_data = new QStringList();
+    *ptr_data = data.split('|');
+    STR_UNITNAME = ptr_data->at(0);
+    I_UNIT_DATA[0] = ptr_data->at(1).toInt();
+    I_UNIT_DATA[1] = ptr_data->at(2).toInt();
+    I_UNIT_DATA[2] = ptr_data->at(3).toInt();
+    I_UNIT_DATA[3] = ptr_data->at(4).toInt();
+    I_UNIT_DATA[4] = ptr_data->at(5).toInt();
+}
+
 double Unit::calculate_data(double trim, double value, int type)
 {
     double returnValue = 0;
@@ -46,8 +65,8 @@ double Unit::calculate_data(double trim, double value, int type)
         }else{
             for(int i = 0; i < (I_ROWS-1);i++){
                 if( D_ULLAGE[i] >= value && value < D_ULLAGE[i+1]){
-                    indexes[2] = i;
-                    indexes[3] = i+1;
+                    indexes[2] = i+1;
+                    indexes[3] = i;
                 }else;
             }
         }
@@ -59,9 +78,29 @@ double Unit::calculate_data(double trim, double value, int type)
         break;
     }
     case Sounding:{
+        if(D_SOUNDING[0] > D_SOUNDING[1]){
+            for(int i = 0; i<(I_ROWS-1);i++){
+                if(D_SOUNDING[i] < value && value>=D_SOUNDING[i+1]){
+                    indexes[2] = i+1;
+                    indexes[3] = i;
+                }else ;
+            }
+        }else {
+            for(int i = 0;i<(I_ROWS-1);i++){
+                if(D_SOUNDING[i]>=value && value < D_SOUNDING[i+1]){
+                    indexes[2] = i;
+                    indexes[3] = i+1;
+                }
+            }
+        }
+        temp_data[7] = (D_SOUNDING[indexes[3]] - D_SOUNDING[indexes[2]])/100;
+        for(double i = D_SOUNDING[indexes[2]];i<value;i = i+temp_data[7]){
+            trim_maxminvalues[3] = trim_maxminvalues[3] + 1;
+        }
 
         break;
     }
+        break;
 
     }
     temp_data[0] = D_VOLUME_TABLE[indexes[0]][indexes[2]];
