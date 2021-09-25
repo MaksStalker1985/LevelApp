@@ -17,11 +17,29 @@ void Unit::initUnit(QString data)
     QStringList *ptr_data = new QStringList();
     *ptr_data = data.split('|');
     STR_UNITNAME = ptr_data->at(0);
-    I_UNIT_DATA[0] = ptr_data->at(1).toInt();
-    I_UNIT_DATA[1] = ptr_data->at(2).toInt();
-    I_UNIT_DATA[2] = ptr_data->at(3).toInt();
-    I_UNIT_DATA[3] = ptr_data->at(4).toInt();
-    I_UNIT_DATA[4] = ptr_data->at(5).toInt();
+    I_UNIT_DATA[0] = ptr_data->at(1).toInt(); // init unit type
+    I_UNIT_DATA[1] = ptr_data->at(2).toInt(); // init calc type
+    I_UNIT_DATA[2] = ptr_data->at(3).toInt(); // init convertion type
+    I_UNIT_DATA[3] = ptr_data->at(4).toInt(); // init position x
+    I_UNIT_DATA[4] = ptr_data->at(5).toInt(); // init position y
+    STR_TABLENAME = ptr_data->at(6);
+}
+
+void Unit::getMaxValues()
+{
+    for(int i = 0; i < I_ROWS; i++){
+        if (D_UNIT_PARAMS[0] < D_ULLAGE[i]){
+            D_UNIT_PARAMS[0] = D_ULLAGE[i];
+        }else;
+    }
+
+    for (int i = 0; i< I_ROWS;i++){
+        for(int y = 0; y < I_COLUMNS; y++){
+            if( D_UNIT_PARAMS[1] < D_VOLUME_TABLE[y][i]){
+                D_UNIT_PARAMS[1] = D_VOLUME_TABLE[y][i];
+            }
+        }
+    }
 }
 
 double Unit::calculate_data(double trim, double value, int type)
@@ -34,7 +52,7 @@ double Unit::calculate_data(double trim, double value, int type)
     trim_maxminvalues[1] = 999;
     trim_maxminvalues[2] = 0;
     trim_maxminvalues[3] = 0;
-    for(int i = 0;i<I_COLUMN;i++){
+    for(int i = 0;i<I_COLUMNS;i++){
         if(trim_maxminvalues[0]<D_TRIM[i]){
             trim_maxminvalues[0] = D_TRIM[i];
         }else;
@@ -42,7 +60,7 @@ double Unit::calculate_data(double trim, double value, int type)
             trim_maxminvalues[1] = D_TRIM[i];
         }else;
     }
-    for(int i = 0; i<(I_COLUMN-1); i++){
+    for(int i = 0; i<(I_COLUMNS-1); i++){
         if(D_TRIM[i]>trim && D_TRIM[i+1]<=trim){
             indexes[0] = i;
             indexes[1] = i+1;
@@ -112,7 +130,7 @@ double Unit::calculate_data(double trim, double value, int type)
     temp_data[5] = (temp_data[3] - temp_data[1])/100;
     temp_data[4] = temp_data[0] + (temp_data[4] * trim_maxminvalues[2]);
     temp_data[5] = temp_data[1] + (temp_data[5] * trim_maxminvalues[2]);
-    temp_data[6] = (temp_data[5]- temp_data[4])/100;
+    temp_data[6] = (temp_data[5] - temp_data[4])/100;
     returnValue  = temp_data[4] + (temp_data[6] * trim_maxminvalues[3]);
 
     delete [] trim_maxminvalues;

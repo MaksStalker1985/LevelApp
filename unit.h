@@ -34,6 +34,7 @@ private slots:
 
     void getValues(double value, double trim, int type);
     void initUnit(QString data);
+    void getMaxValues();
 
 signals:
     void sig_get_value(double value);
@@ -42,15 +43,16 @@ signals:
     void sig_send_position(int position_x, int position_y);
 private:
 
-    int I_UNIT_DATA[5] = {0,0,0,0,0}; //tank type, calculation type, convertion type
+    int I_UNIT_DATA[5] = {0,0,0,0,0}; //tank type, calculation type, convertion type, position x, position y
     double D_UNIT_VALUE = 0;
     double **D_VOLUME_TABLE;
     double *D_SOUNDING;
     double *D_ULLAGE;
     double *D_TRIM;
     int I_ROWS =0;
-    int I_COLUMN = 0;
+    int I_COLUMNS = 0;
     QString STR_UNITNAME;
+    QString STR_TABLENAME;
     double D_UNIT_PARAMS[5] = {0,0,0,0,0};//Unit max value, unit max volume, unit current volume, unit current value, percent
 
     void fill_tables(int table,int row,int column ,double value);
