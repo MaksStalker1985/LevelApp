@@ -12,14 +12,18 @@ DBHelper::~DBHelper()
 
 }
 
+double DBHelper::d_fill_table(int row, int column, QString table_name)
+{
+
+}
+
 void DBHelper::readDatabase()
 {
  QSqlQuery query;
  query.prepare("SELECT VESSEL_NAME, TankQuantities from Config");
  query.exec();
  query.first();
- QString temp1 = query.value(0).toString();
- int temp2 = query.value(1).toInt();
+
 
 
 }

@@ -26,7 +26,10 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(121, 166, 170);</string>
+   <string notr="true">#BallastSmallUnit{background-color: rgb(121, 166, 170);}
+#progressBar::chunk{color: rgb(19, 145, 255);}
+#progressBar::text{alignment:center;}
+</string>
   </property>
   <widget class="QFrame" name="frame">
    <property name="geometry">
@@ -69,16 +72,36 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#progressBar::chunk{
-	background-color: rgb(6, 126, 255);
-
-}</string>
+     <string notr="true"/>
     </property>
     <property name="value">
      <number>24</number>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sounding, m:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>60</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
     </property>
    </widget>
   </widget>

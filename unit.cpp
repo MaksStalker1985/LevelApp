@@ -33,11 +33,11 @@ void Unit::getMaxValues()
         }else;
     }
 
-    for (int i = 0; i< I_ROWS;i++){
+    for(int i = 0; i < I_ROWS; i++){
         for(int y = 0; y < I_COLUMNS; y++){
             if( D_UNIT_PARAMS[1] < D_VOLUME_TABLE[y][i]){
                 D_UNIT_PARAMS[1] = D_VOLUME_TABLE[y][i];
-            }
+            }else;
         }
     }
 }

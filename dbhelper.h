@@ -11,8 +11,12 @@ class DBHelper : public QObject
 public:
     explicit DBHelper(QObject *parent = nullptr);
     ~DBHelper();
+
+    double d_fill_table(int row, int column, QString table_name);
 signals:
-    void sig_send_config(QString vessel_name, int tank_quantities)
+    void sig_send_config(QString vessel_name, int tank_quantities);
+    void sig_send_tanks_data(QStringList tanks_data);
+
 private:
     QSqlDatabase *ptr_dbase;
 

@@ -18,6 +18,7 @@ SOURCES += \
     main.cpp \
     maincoremodule.cpp \
     mainwindow.cpp \
+    miscsmallform.cpp \
     unit.cpp
 
 HEADERS += \
@@ -29,13 +30,15 @@ HEADERS += \
     fuelsmallunit.h \
     maincoremodule.h \
     mainwindow.h \
+    miscsmallform.h \
     unit.h
 
 FORMS += \
     ballastsmallunit.ui \
     ballastwidget.ui \
     fuelsmallunit.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    miscsmallform.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
