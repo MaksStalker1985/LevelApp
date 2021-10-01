@@ -8,11 +8,6 @@ BallastWidget::BallastWidget(QWidget *parent) :
     ui->setupUi(this);
     connect(this,&BallastWidget::insertItem,&BallastWidget::addUnit);
 
-    gr_lay->setSpacing(1);
-    gr_lay->setVerticalSpacing(1);
-    gr_lay->setHorizontalSpacing(1);
-    gr_lay->setSizeConstraint(QLayout::SetMinAndMaxSize);
-
 }
 
 BallastWidget::~BallastWidget()
@@ -21,7 +16,21 @@ BallastWidget::~BallastWidget()
     delete ui;
 }
 
-void BallastWidget::addUnit(QWidget *ptr_wdg, int position_x, int position_y)
+void BallastWidget::addUnit(QWidget *ptr_wdg, int position_x, int position_y, int type)
 {
-    gr_lay->addWidget(ptr_wdg,position_x,position_y,Qt::AlignCenter);
+    switch (type) {
+    case afterPeak:{
+        ui->aptLayout->addWidget(ptr_wdg,0,Qt::AlignCenter);
+        break;
+    }
+    case usual:{
+         ui->gridLayout->addWidget(ptr_wdg,position_x,position_y,Qt::AlignCenter);
+         break;
+    }
+    case forpeak:{
+        ui->fptLayout->addWidget(ptr_wdg,0,Qt::AlignCenter);
+        break;
+    }
+    }
+
 }

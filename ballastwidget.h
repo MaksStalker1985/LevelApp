@@ -10,10 +10,16 @@ class BallastWidget;
 
 class BallastWidget : public QWidget
 {
+
     Q_OBJECT
 
+
+    enum type{
+        afterPeak = 0x3a,usual,forpeak
+    };
+
 signals:
-    void insertItem(QWidget *ptr_wdg, int position_x, int position_y);
+    void insertItem(QWidget *ptr_wdg, int position_x, int position_y, int type);
 
 public:
     explicit BallastWidget(QWidget *parent = nullptr);
@@ -21,10 +27,9 @@ public:
 
 private:
     Ui::BallastWidget *ui;
-     QGridLayout *gr_lay = new QGridLayout;
 
 private slots:
-    void addUnit(QWidget *ptr_wdg, int position_x, int position_y);
+    void addUnit(QWidget *ptr_wdg, int position_x, int position_y,int type);
 
 };
 
